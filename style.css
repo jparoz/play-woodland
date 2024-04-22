@@ -1,0 +1,102 @@
+/* TODO: Make everything use relative units */
+
+/* tweaks */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* variables */
+:root {
+    --black:        #151520;
+
+    --dark-white:   #dfdfcf;
+    --white:        #efefdf;
+    --bright-white: #ffffef;
+
+    --card-section-radius: 5px;
+}
+
+body {
+    background-color: var(--black);
+
+    /* TODO: consider font choice more carefully */
+    font-family: "Avenir Next", sans-serif;
+    line-height: 1.5;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    background-color: var(--white);
+
+    width: 250px;
+    height: 350px;
+    padding: 10px;
+    border-radius: 15px;
+
+    box-shadow: 5px 5px 15px -5px black;
+
+    transition: rotate 0.2s ease-in-out;
+}
+
+.card:hover {
+    rotate: 2deg;
+}
+
+.card .name {
+    font-size: 1.5rem;
+    background-color: var(--bright-white);
+
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+.card .image {
+    background-color: var(--black);
+    border-radius: var(--card-section-radius);
+
+    flex-basis: 40%;
+}
+
+.card .text {
+    background-color: var(--dark-white);
+    border-radius: var(--card-section-radius);
+    flex-grow: 1;
+
+    padding: 5px;
+}
+
+.card footer {
+    font-size: 0.8rem;
+    margin: 0px 1ch;
+}
+
+/* hanging indents */
+.card footer q::before {
+    position: relative;
+    display: inline-block;
+    width: 0px;
+    right: 0.7ch; /* NOTE: depends on the font used */
+}
+
+.card footer .author {
+    font-style: italic;
+    white-space: nowrap;
+    float: right;
+}
+
+.author::before {
+    content: "\2013";
+    padding: 0px 0.9ch;
+}
