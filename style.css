@@ -7,10 +7,10 @@
 /* variables */
 :root {
 
-    --green       : #237031;
-    --blue        : #151573;
-    --red         : #70120f;
-    --grey        : #aaaaaa;
+    --green:        #237031;
+    --blue:         #151573;
+    --red:          #70120f;
+    --grey:         #aaaaaa;
 
     --black:        #151520;
 
@@ -34,7 +34,9 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    align-content: center;
     justify-content: center;
+    flex-wrap: wrap;
 
     gap: 10px;
 }
@@ -70,7 +72,7 @@ body {
 .card header {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .card .cost {
@@ -85,18 +87,28 @@ body {
 
     border-radius: 50%;
 }
+
 .card .cost.green   { background-color: var(--green); }
 .card .cost.blue    { background-color: var(--blue ); }
 .card .cost.red     { background-color: var(--red  ); }
 .card .cost.black   { background-color: var(--black); }
 .card .cost.neutral { background-color: var(--grey ); }
 
+.card .cost:empty::before {
+    width:  60%;
+    height: 60%;
+}
+
+.card .cost.green:empty::before   { content: url(assets/acorn.svg); }
+.card .cost.blue:empty::before    { content: url(assets/feather.svg); }
+.card .cost.red:empty::before     { content: url(assets/paw.svg); }
+.card .cost.black:empty::before   { content: url(assets/roots.svg); }
+.card .cost.neutral:empty::before { content: url(assets/insect.svg); }
+
 .card .name {
     font-size: 1.5rem;
 
-    /* background-color: var(--bright-white); */
-    /* padding: 0px 10px; */
-    /* border-radius: 10px; */
+    padding: 0px 4px;
 
 }
 
