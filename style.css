@@ -12,11 +12,14 @@
     --red:          #70120f;
     --grey:         #aaaaaa;
 
-    --black:        #151520;
+    --black:            #151520;
+    --bright-black:     #282834;
 
-    --dark-white:   #dfdfcf;
-    --white:        #efefdf;
-    --bright-white: #ffffef;
+    --dark-white:       #dfdfcf;
+    --semidark-white:   #e8e8d3;
+    --white:            #efefdf;
+    --semibright-white: #f8f8e5;
+    --bright-white:     #ffffef;
 
     --card-section-radius: 5px;
 }
@@ -44,7 +47,7 @@ body {
 .card {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
 
     background-color: var(--white);
 
@@ -117,19 +120,39 @@ body {
     border-radius: var(--card-section-radius);
 
     flex-basis: 40%;
+
+    z-index: 3;
+}
+
+.card .types {
+    background-color: var(--bright-white);
+    border-radius: var(--card-section-radius);
+
+    font-size: 0.8rem;
+
+    padding: 0px 0px 0px 5px;
+
+    margin-top: -2rem;
+    padding-top: 2rem;
+    z-index: 2;
 }
 
 .card .text {
-    background-color: var(--dark-white);
+    background-color: var(--semibright-white);
     border-radius: var(--card-section-radius);
+
     flex-grow: 1;
 
     padding: 5px;
+    margin-top: -2rem;
+    padding-top: calc(2rem + 5px);
+
+    z-index: 1;
 }
 
 .card footer {
     font-size: 0.8rem;
-    margin: 0px 1ch;
+    margin: 5px 1ch 0px 1ch;
 }
 
 /* hanging indents */
