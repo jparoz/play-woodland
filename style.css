@@ -6,6 +6,12 @@
 
 /* variables */
 :root {
+
+    --green       : #237031;
+    --blue        : #151573;
+    --red         : #70120f;
+    --grey        : #aaaaaa;
+
     --black:        #151520;
 
     --dark-white:   #dfdfcf;
@@ -40,6 +46,9 @@ body {
 
     background-color: var(--white);
 
+    cursor: grab;
+    user-select: none;
+
     width: 250px;
     height: 350px;
     padding: 10px;
@@ -47,19 +56,48 @@ body {
 
     box-shadow: 5px 5px 15px -5px black;
 
-    transition: rotate 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
-    rotate: 2deg;
+    transform: translateY(-10px);
 }
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card .cost {
+    color: var(--bright-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60%;
+    aspect-ratio: 1/1;
+
+    border-radius: 50%;
+}
+.card .cost.green   { background-color: var(--green); }
+.card .cost.blue    { background-color: var(--blue ); }
+.card .cost.red     { background-color: var(--red  ); }
+.card .cost.black   { background-color: var(--black); }
+.card .cost.neutral { background-color: var(--grey ); }
 
 .card .name {
     font-size: 1.5rem;
-    background-color: var(--bright-white);
 
-    padding: 0px 10px;
-    border-radius: 10px;
+    /* background-color: var(--bright-white); */
+    /* padding: 0px 10px; */
+    /* border-radius: 10px; */
+
 }
 
 .card .image {
