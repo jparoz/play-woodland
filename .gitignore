@@ -1,0 +1,6 @@
+*.beam
+*.ez
+woodland/build
+woodland_server/build
+woodland_client/build
+erl_crash.dump

@@ -3,6 +3,18 @@
         <title>Play Woodland</title>
         <link rel="stylesheet" href="style.css"/>
         <script type="text/javascript" src="https://livejs.com/live.js"></script>
+        <script type="importmap">
+{
+    "imports": {
+        "woodland": "./build/dev/javascript/woodland_client/woodland_client.mjs",
+        "ffi": "./src/ffi.mjs"
+    }
+}
+        </script>
+        <script type="module">
+import {main} from "woodland";
+main();
+        </script>
     </head>
     <body>
         <div class="game">
