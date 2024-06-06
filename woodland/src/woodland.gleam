@@ -1,4 +1,5 @@
 import woodland/cost.{type Cost}
+import woodland/flavour.{type Flavour}
 
 pub type Card {
   Card(
@@ -13,6 +14,6 @@ pub type Card {
     /// The rules text of the card.
     text: String,
     /// The flavour text of the card.
-    flavour: String,
+    flavour: Flavour,
   )
 }
