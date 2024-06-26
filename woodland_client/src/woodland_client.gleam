@@ -10,14 +10,6 @@ import woodland/card/flavour
 import ffi
 
 pub fn main() {
-  let load_card = fn(path) {
-    use json <- ffi.open_json(path)
-    json
-    |> card.parse_json
-    |> result.lazy_unwrap(fn() { panic as "couldn't parse card JSON" })
-    |> add_card
-  }
-
   load_card("/example_cards/market.json")
   load_card("/example_cards/fox.json")
   load_card("/example_cards/buffoon.json")
@@ -25,7 +17,15 @@ pub fn main() {
   load_card("/example_cards/foobar.json")
 }
 
-pub fn add_card(card: Card) {
+fn load_card(path: String) {
+  use json <- ffi.open_json(path)
+  json
+  |> card.parse_json
+  |> result.lazy_unwrap(fn() { panic as "couldn't parse card JSON" })
+  |> add_card
+}
+
+fn add_card(card: Card) {
   ffi.append_child(".game", "<div class=\"card\">
         <header>" <> {
     card.cost
