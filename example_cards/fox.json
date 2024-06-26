@@ -1,0 +1,16 @@
+{
+    "name": "Fox",
+    "cost": {
+        "red": 3
+    },
+    "types": [
+        "Fox",
+        "Critter"
+    ],
+    "image": "/fox.jpg",
+    "text": "Fox has 15 damage doodads.",
+    "flavour": {
+        "text": "A fox never smells its own farts, except while driving off a cliff.",
+        "author": "The Great Fox"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Foobar",
+    "cost": {
+        "black": 1
+    },
+    "types": ["Foobar", "Critter"],
+    "image": "/foobar.jpg",
+    "text": "Foobar has 7 damage doodads.",
+    "flavour": {
+        "text": "Foobar!"
+    }
+}

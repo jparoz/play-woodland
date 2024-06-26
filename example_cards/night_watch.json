@@ -1,0 +1,12 @@
+{
+    "cost": {
+        "blue": 2
+    },
+    "name": "Night Watch",
+    "image": "night_watch.png",
+    "types": ["Bird", "Spell"],
+    "text": "Make 2 1/1 flying Bird Critters.",
+    "flavour": {
+        "text": "The night shift can be hard, but it's easier with a friend."
+    }
+}

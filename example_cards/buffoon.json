@@ -1,0 +1,15 @@
+{
+    "name": "Buffoon",
+    "cost": {
+        "green": 1
+    },
+    "types": [
+        "Baboon",
+        "Critter"
+    ],
+    "image": "/buffoon.jpg",
+    "text": "Buffoon has 1 damage doodads.",
+    "flavour": {
+        "text": "Great bumbling baboons!"
+    }
+}

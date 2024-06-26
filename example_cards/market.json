@@ -1,0 +1,19 @@
+{
+    "name": "Market",
+    "cost": {
+        "green": 1,
+        "blue": 1,
+        "red": 1,
+        "black": 1,
+        "neutral": 1
+    },
+    "types": [
+        "Building",
+        "Spell"
+    ],
+    "image": "/market.jpg",
+    "text": "Get 5 of any one type of food.",
+    "flavour": {
+        "text": "Variety is the spice of life."
+    }
+}
