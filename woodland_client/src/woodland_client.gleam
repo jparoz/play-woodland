@@ -2,6 +2,9 @@ import gleam/int
 import gleam/list
 import gleam/result
 import gleam/string
+import nakai
+import nakai/attr
+import nakai/html
 
 import woodland/card.{type Card}
 import woodland/card/cost
@@ -26,30 +29,39 @@ fn load_card(path: String) {
 }
 
 fn add_card(card: Card) {
-  ffi.append_child(".game", "<div class=\"card\">
-        <header>" <> {
+  card
+  |> card_to_html
+  |> nakai.to_inline_string
+  |> ffi.append_child(".game", _)
+}
+
+fn card_to_html(card: Card) -> html.Node {
+  let costs =
     card.cost
     |> list.map(fn(c) {
-      "<span class=\"cost "
-      <> cost.colour(c)
-      <> "\">"
-      <> case cost.amount(c) {
+      html.span_text([attr.class("cost " <> cost.colour(c))], case
+        cost.amount(c)
+      {
         1 -> ""
         n -> int.to_string(n)
-      }
-      <> "</span>"
+      })
     })
-    |> string.concat
-  } <> "<span class=\"name\">" <> card.name <> "</span>
-        </header>
-        <div class=\"image\">" <> card.image <> "</div>
-        <div class=\"types\">" <> string.join(card.types, " ") <> "</div>
-        <div class=\"text\">" <> card.text <> "</div>
-        <footer>" <> case card.flavour {
-    flavour.Text(text) -> text
-    flavour.Quote(quote, author) -> {
-      "<q>" <> quote <> "</q><span class=\"author\">" <> author <> "</span>"
-    }
-  } <> "</footer>
-    </div>")
+
+  let name = html.span_text([attr.class("name")], card.name)
+
+  let flavour = case card.flavour {
+    flavour.Text(text) -> [html.Text(text)]
+    flavour.Quote(quote, author) -> [
+      html.q_text([], quote),
+      html.span_text([attr.class("author")], author),
+    ]
+  }
+
+  html.div([attr.class("card")], [
+    html.header([], list.append(costs, [name])),
+    html.div_text([attr.class("image")], card.image),
+    html.div_text([attr.class("types")], string.join(card.types, " ")),
+    html.div_text([attr.class("text")], card.text),
+    html.footer([], flavour),
+  ])
 }

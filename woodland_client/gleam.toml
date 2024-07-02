@@ -18,6 +18,7 @@ target = "javascript"
 gleam_stdlib = ">= 0.34.0 and < 2.0.0"
 woodland = { path = "../woodland" }
 gleam_json = ">= 2.0.0 and < 3.0.0"
+nakai = ">= 0.11.0 and < 1.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"
