@@ -16,36 +16,8 @@ jobs:
           otp-version: "26.0.2"
           gleam-version: "1.2.1"
           rebar3-version: "3"
-
-      # library
       - run: gleam deps download
-        working-directory: woodland
-        if: always()
       - run: gleam test
-        working-directory: woodland
         if: always()
       - run: gleam format --check src test
-        working-directory: woodland
-        if: always()
-
-      # server
-      - run: gleam deps download
-        working-directory: woodland_server
-        if: always()
-      - run: gleam test
-        working-directory: woodland_server
-        if: always()
-      - run: gleam format --check src test
-        working-directory: woodland_server
-        if: always()
-
-      # client
-      - run: gleam deps download
-        working-directory: woodland_client
-        if: always()
-      - run: gleam test
-        working-directory: woodland_client
-        if: always()
-      - run: gleam format --check src test
-        working-directory: woodland_client
         if: always()

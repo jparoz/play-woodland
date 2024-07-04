@@ -6,9 +6,9 @@ import nakai
 import nakai/attr
 import nakai/html
 
-import woodland/card.{type Card}
-import woodland/card/cost
-import woodland/card/flavour
+import card.{type Card}
+import card/cost
+import card/flavour
 
 import ffi
 

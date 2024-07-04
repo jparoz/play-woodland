@@ -2,8 +2,8 @@ import gleam/dynamic.{type Dynamic, field, list, string}
 import gleam/json
 import gleam/result
 
-import woodland/card/cost.{type Cost}
-import woodland/card/flavour.{type Flavour}
+import card/cost.{type Cost}
+import card/flavour.{type Flavour}
 
 pub type Card {
   Card(

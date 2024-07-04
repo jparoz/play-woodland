@@ -1,5 +1,5 @@
 import gleam/dict
-import gleam/dynamic.{type DecodeError, type Dynamic, dict, field, int, string}
+import gleam/dynamic.{type DecodeError, type Dynamic, dict, int, string}
 import gleam/option
 import gleam/result
 
