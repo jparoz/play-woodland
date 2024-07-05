@@ -9,6 +9,7 @@ pub fn main() {
   load_card("/example_cards/buffoon.json")
   load_card("/example_cards/night_watch.json")
   load_card("/example_cards/foobar.json")
+  add_card(card.Unknown)
 }
 
 fn load_card(path: String) {
@@ -16,6 +17,7 @@ fn load_card(path: String) {
   json
   |> card.parse_json
   |> result.lazy_unwrap(fn() { panic as "couldn't parse card JSON" })
+  |> card.Card
   |> add_card
 }
 

@@ -64,6 +64,12 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
+.card.unknown {
+    background-color: var(--bright-black);
+
+    border: var(--dark-white) 10px solid;
+}
+
 .card:hover {
     transform: translateY(-10px);
 }

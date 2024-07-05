@@ -12,7 +12,12 @@ import card/cost.{type Cost}
 import card/flavour.{type Flavour}
 
 pub type Card {
-  Card(
+  Card(info: CardInfo)
+  Unknown
+}
+
+pub type CardInfo {
+  CardInfo(
     /// The name of the card.
     name: String,
     /// The cost to play the card.
@@ -31,7 +36,7 @@ pub type Card {
 fn decoder(dyn: Dynamic) {
   dyn
   |> dynamic.decode6(
-    Card,
+    CardInfo,
     field("name", of: string),
     field("cost", of: cost.decoder),
     field("types", of: list(string)),
@@ -42,39 +47,47 @@ fn decoder(dyn: Dynamic) {
 }
 
 // TODO: this should probably have some other error value
-pub fn parse_json(json: String) -> Result(Card, Nil) {
+pub fn parse_json(json: String) -> Result(CardInfo, Nil) {
   json.decode(from: json, using: decoder)
   |> result.replace_error(Nil)
 }
 
 pub fn to_html(card: Card) -> String {
-  let costs =
-    card.cost
-    |> list.map(fn(c) {
-      html.span_text([attr.class("cost " <> cost.colour(c))], case
-        cost.amount(c)
-      {
-        1 -> ""
-        n -> int.to_string(n)
-      })
-    })
+  case card {
+    Card(info) -> {
+      let costs =
+        info.cost
+        |> list.map(fn(c) {
+          html.span_text([attr.class("cost " <> cost.colour(c))], case
+            cost.amount(c)
+          {
+            1 -> ""
+            n -> int.to_string(n)
+          })
+        })
 
-  let name = html.span_text([attr.class("name")], card.name)
+      let name = html.span_text([attr.class("name")], info.name)
 
-  let flavour = case card.flavour {
-    flavour.Text(text) -> [html.Text(text)]
-    flavour.Quote(quote, author) -> [
-      html.q_text([], quote),
-      html.span_text([attr.class("author")], author),
-    ]
+      let flavour = case info.flavour {
+        flavour.Text(text) -> [html.Text(text)]
+        flavour.Quote(quote, author) -> [
+          html.q_text([], quote),
+          html.span_text([attr.class("author")], author),
+        ]
+      }
+
+      html.div([attr.class("card")], [
+        html.header([], list.append(costs, [name])),
+        html.div_text([attr.class("image")], info.image),
+        html.div_text([attr.class("types")], string.join(info.types, " ")),
+        html.div_text([attr.class("text")], info.text),
+        html.footer([], flavour),
+      ])
+      |> nakai.to_inline_string
+    }
+    Unknown -> {
+      html.div([attr.class("card unknown")], [])
+      |> nakai.to_inline_string
+    }
   }
-
-  html.div([attr.class("card")], [
-    html.header([], list.append(costs, [name])),
-    html.div_text([attr.class("image")], card.image),
-    html.div_text([attr.class("types")], string.join(card.types, " ")),
-    html.div_text([attr.class("text")], card.text),
-    html.footer([], flavour),
-  ])
-  |> nakai.to_inline_string
 }
